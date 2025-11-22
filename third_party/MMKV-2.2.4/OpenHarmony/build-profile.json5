@@ -1,0 +1,61 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "storeFile": "codesign/mmkvdemo.p12",
+          "storePassword": "00000018FB40D7D00D4715EE19A6D69880C61AC357911CB6D8DB83BDB62CCB7D509D89E3AA60D2D9",
+          "keyAlias": "mmkvdemo",
+          "keyPassword": "00000018DB260308A2BFF978A913387892A5456BD2491F19CF319F99BAFAA32C35E565B2B7827C39",
+          "signAlg": "SHA256withECDSA",
+          "profile": "codesign/mmkvdemoDebug.p7b",
+          "certpath": "codesign/mmkvdemo.cer"
+        }
+      }
+    ],
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+        "compatibleSdkVersion": "4.1.0(11)",
+        "runtimeOS": "HarmonyOS",
+      }
+    ],
+    "buildModeSet": [
+      {
+        "name": "debug",
+      },
+      {
+        "name": "release"
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "MMKV",
+      "srcPath": "./MMKV",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}

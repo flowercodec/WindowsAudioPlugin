@@ -1,0 +1,116 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    namespace "com.tencent.mmkvdemo"
+    compileSdk rootProject.ext.compileSdk
+
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'mmkv.wxg'
+            storeFile rootProject.file('debug.keystore')
+            storePassword 'mmkv.wxg'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.tencent.mmkvdemo"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        externalNativeBuild {
+            cmake {
+                arguments = ["-DANDROID_STL=c++_shared"]
+                // use prefab or not: Gradle has bug handling local prefab modules, fails on linking
+                arguments += ["-DHAS_PREFAB=1"]
+                cppFlags "-fvisibility=hidden", "-funwind-tables", "-fasynchronous-unwind-tables", "-O2",
+                        "-Wl,-z,max-page-size=16384"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+//            debuggable true
+//            jniDebuggable true
+        }
+        debug {
+            signingConfig signingConfigs.config
+            jniDebuggable true
+        }
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    flavorDimensions = ["stl_mode"]
+    productFlavors {
+        DefaultCpp.dimension = "stl_mode"
+        StaticCpp.dimension = "stl_mode"
+        SharedCpp.dimension = "stl_mode"
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+        }
+    }
+
+    buildFeatures {
+        aidl true
+
+        prefab true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    /*splits {
+        // Configures multiple APKs based on ABI.
+        abi {
+
+            // Enables building multiple APKs per ABI.
+            enable true
+
+            // By default all ABIs are included, so use reset() and include to specify that we only want specific APKs
+            // Resets the list of ABIs that Gradle should create APKs for to none.
+            reset()
+
+            // Specifies a list of ABIs that Gradle should create APKs for.
+            include "armeabi-v7a"
+
+            // Specifies that we do not want to also generate a universal APK that includes all ABIs.
+            universalApk false
+        }
+    }*/
+}
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+// Define the mmkv version to use
+def mmkvVersion = "${VERSION_NAME_PREFIX}${VERSION_NAME_SUFFIX}"
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+//    implementation project(':mmkv')
+//    implementation "com.tencent:mmkv:$mmkvVersion"
+//    implementation "com.tencent:mmkv-static:$mmkvVersion" // this is identical to 'com.tencent:mmkv'
+    implementation "com.tencent:mmkv-shared:$mmkvVersion" // with prefab functionality
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test:runner:1.6.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation 'com.getkeepsafe.relinker:relinker:1.4.5'
+}

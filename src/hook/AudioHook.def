@@ -1,0 +1,5 @@
+LIBRARY
+EXPORTS
+	ComputeAudioApiInfo
+	HookInstall
+	HookUninstall	
