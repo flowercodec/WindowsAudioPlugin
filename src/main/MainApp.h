@@ -43,6 +43,7 @@ public:
 	afx_msg void OnTrayDisable();
 	afx_msg void OnTrayRunAtStartup();
 	afx_msg void OnTraySettings();
+	afx_msg void OnTrayTestWake();
 	afx_msg void OnTrayExit();
 
 	DECLARE_MESSAGE_MAP()

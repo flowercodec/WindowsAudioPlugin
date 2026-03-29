@@ -141,6 +141,14 @@ void CWindowsAudioPluginApp::OnTraySettings()
 	ShowConfigDialog();
 }
 
+void CWindowsAudioPluginApp::OnTrayTestWake()
+{
+	m_audioManager.SetMp3Path(m_settings.GetMp3Path());
+	m_audioManager.SetWakeMinVolumePercent(m_settings.GetWakeMinVolumePercent());
+	m_audioManager.SetWakePlaySeconds(m_settings.GetWakePlaySeconds());
+	m_audioManager.OnSystemWake();
+}
+
 void CWindowsAudioPluginApp::ShowConfigDialog()
 {
 	m_settingsOpen = true;

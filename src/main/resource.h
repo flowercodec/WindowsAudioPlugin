@@ -6,6 +6,7 @@
 #define IDM_TRAY_ENABLE                 2101
 #define IDM_TRAY_DISABLE                2102
 #define IDM_TRAY_RUN_AT_STARTUP         2103
+#define IDM_TRAY_TEST_WAKE              2104
 #define IDM_TRAY_SETTINGS               2105
 #define IDM_TRAY_EXIT                   2199
 

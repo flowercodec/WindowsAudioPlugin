@@ -175,18 +175,18 @@ void CConfigDialog::UpdateHookStepEnable()
 
 void CConfigDialog::UpdateWakeControlsEnable()
 {
-	BOOL enabled = (m_chkWake.GetCheck() == BST_CHECKED);
-	m_edtWakeMin.EnableWindow(enabled);
-	m_spinWakeMin.EnableWindow(enabled);
-	GetDlgItem(IDC_WAKE_MIN_LABEL)->EnableWindow(enabled);
-	m_edtWakePlay.EnableWindow(enabled);
-	m_spinWakePlay.EnableWindow(enabled);
-	GetDlgItem(IDC_WAKE_PLAY_LABEL)->EnableWindow(enabled);
-	m_edtMp3.EnableWindow(enabled);
-	GetDlgItem(IDC_BROWSE)->EnableWindow(enabled);
-	GetDlgItem(IDC_TEST_WAKE)->EnableWindow(enabled);
-	m_cmbWakeTrigger.EnableWindow(enabled);
-	GetDlgItem(IDC_WAKE_TRIGGER_LABEL)->EnableWindow(enabled);
+	// BOOL enabled = (m_chkWake.GetCheck() == BST_CHECKED);
+	// m_edtWakeMin.EnableWindow(enabled);
+	// m_spinWakeMin.EnableWindow(enabled);
+	// GetDlgItem(IDC_WAKE_MIN_LABEL)->EnableWindow(enabled);
+	// m_edtWakePlay.EnableWindow(enabled);
+	// m_spinWakePlay.EnableWindow(enabled);
+	// GetDlgItem(IDC_WAKE_PLAY_LABEL)->EnableWindow(enabled);
+	// m_edtMp3.EnableWindow(enabled);
+	// GetDlgItem(IDC_BROWSE)->EnableWindow(enabled);
+	// GetDlgItem(IDC_TEST_WAKE)->EnableWindow(enabled);
+	// m_cmbWakeTrigger.EnableWindow(enabled);
+	// GetDlgItem(IDC_WAKE_TRIGGER_LABEL)->EnableWindow(enabled);
 }
 
 void CConfigDialog::OnTestWake()

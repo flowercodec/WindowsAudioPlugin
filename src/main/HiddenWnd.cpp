@@ -67,6 +67,7 @@ LRESULT CHiddenWnd::OnTrayIcon(WPARAM wParam, LPARAM lParam)
 		menu.AppendMenu(enableFlags, IDM_TRAY_ENABLE, _T("Enable"));
 		menu.AppendMenu(startupFlags, IDM_TRAY_RUN_AT_STARTUP, _T("Run at startup"));
 		menu.AppendMenu(MF_SEPARATOR);
+		menu.AppendMenu(MF_STRING, IDM_TRAY_TEST_WAKE, _T("Test Wake"));
 		menu.AppendMenu(MF_STRING, IDM_TRAY_SETTINGS, _T("Settings..."));
 		menu.AppendMenu(MF_SEPARATOR);
 		menu.AppendMenu(MF_STRING, IDM_TRAY_EXIT, _T("Exit"));
@@ -85,6 +86,7 @@ LRESULT CHiddenWnd::OnTrayIcon(WPARAM wParam, LPARAM lParam)
 		case IDM_TRAY_RUN_AT_STARTUP:
 			app->OnTrayRunAtStartup();
 			break;
+		case IDM_TRAY_TEST_WAKE: app->OnTrayTestWake(); break;
 		case IDM_TRAY_SETTINGS: app->OnTraySettings(); break;
 		case IDM_TRAY_EXIT: app->OnTrayExit(); break;
 		default: break;
